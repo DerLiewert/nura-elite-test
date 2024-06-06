@@ -1,0 +1,251 @@
+//====================================================================================================
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+  }
+
+  &__logo {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    img {
+      @media (max-width: $tablet) {
+        height: 116px;
+      }
+      @media (max-width: $mobile) {
+        height: 100px;
+      }
+      @media (max-width: $mobileSmall) {
+        height: 80px;
+      }
+    }
+  }
+
+  &__menu {
+    padding: 25px 0;
+    @media (max-width: $tablet) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__contacts {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    @media (min-width: $tablet) {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__viber {
+    img,
+    svg {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+      fill: #fff;
+      @media (any-hover: hover) {
+        transition: fill 0.3s ease 0s;
+        &:hover {
+          fill: #dba069;
+        }
+      }
+      @media (max-width: $mobileSmall) {
+        fill: #dba069;
+      }
+    }
+  }
+
+  &__tel {
+    line-height: math.div(24, 20);
+    letter-spacing: 4%;
+    color: #fff;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    margin-left: 35px;
+    border: 1px solid #dba069;
+    border-radius: 3px;
+    @media (any-hover: hover) {
+      transition: background-color 0.3s ease 0s;
+      &:hover {
+        background-color: #dba069;
+      }
+    }
+    svg {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      margin-right: 5px;
+      path {
+        fill: #fff;
+        @media (max-width: $mobileSmall) {
+          fill: #dba069;
+        }
+      }
+    }
+    @media (max-width: $mobile) {
+      font-size: 16px;
+      padding: 8px 15px;
+      margin-left: 25px;
+      &::before {
+        width: 18px;
+        height: 18px;
+      }
+    }
+    @media (max-width: $mobileSmall) {
+      color: #dba069;
+    }
+  }
+
+  &__nav {
+  }
+
+  &__burger {
+    @media (max-width: $tablet) {
+      margin-left: 25px;
+    }
+  }
+}
+.nav {
+  @media (max-width: $tablet) {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    width: 100%;
+    height: calc(100vh - 100%);
+    padding: 30px 15px;
+    border-top: 1px solid #842231;
+    background-color: #fff;
+    overflow: auto;
+    transition: right 0.3s ease 0s;
+    .menu-open & {
+      right: 0;
+    }
+  }
+  @media (max-width: $mobileSmall) {
+    width: 100%;
+    right: -110%;
+  }
+  &__list {
+    @media (min-width: $tablet) {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 20px 40px;
+    }
+    @media (min-width: 1100px) {
+      column-gap: 50px;
+    }
+    @media (max-width: $tablet) {
+      text-align: right;
+    }
+    @media (max-width: $mobileSmall) {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__item {
+    @media (max-width: $tablet) {
+      & + & {
+        margin-top: 5px;
+      }
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    font-size: 16px;
+    line-height: math.div(19, 16);
+    color: #fff;
+    white-space: nowrap;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background-color: #dba069;
+      pointer-events: none;
+      transition: width 0.3s ease 0s;
+    }
+    @media (any-hover: hover) {
+      &:hover::after {
+        width: 100%;
+      }
+    }
+    @media (max-width: $tablet) {
+      font-size: 18px;
+      padding: 5px 0;
+      color: $mainColor;
+    }
+  }
+}
+
+//====================================================================================================
+
+//Burger
+.burger {
+  display: none;
+  @media (max-width: $tablet) {
+    display: block;
+    position: relative;
+    width: rem(30);
+    height: rem(18);
+    cursor: pointer;
+    z-index: 5;
+    span,
+    &::before,
+    &::after {
+      content: '';
+      transition: all 0.3s ease 0s;
+      right: 0;
+      position: absolute;
+      width: 100%;
+      height: rem(2);
+      background-color: #fff;
+    }
+    &::before {
+      top: 0;
+    }
+    &::after {
+      bottom: 0;
+    }
+    span {
+      top: calc(50% - rem(1));
+    }
+    .menu-open & {
+      span {
+        width: 0;
+      }
+      &::before,
+      &::after {
+      }
+      &::before {
+        top: calc(50% - rem(1));
+        transform: rotate(-45deg);
+      }
+      &::after {
+        bottom: calc(50% - rem(1));
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
